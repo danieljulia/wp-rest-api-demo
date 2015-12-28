@@ -1,3 +1,7 @@
+
+var rootURL = 'data/';
+
+
 var app = {
 
 	init: function() {
@@ -14,17 +18,17 @@ var app = {
 
 	getPosts: function() {
 		console.log('app.getPosts');
-		var rootURL = 'http://www.wp4.dev/wp-json';
+		
 
 		$.ajax({
 			type: 'GET',
-			url: rootURL + '/posts?type=news',
+			url: rootURL + 'news.json',
 			dataType: 'json',
 			success: function(data){
 				$.each(data, function(index, value) {
 			      $('ul.topcoat-list').append('<li class="topcoat-list__item">' +
 			      	'<a class="view-link" href="#'+value.ID+'">' +
-			      	'<img src="'+value.featured_image.attachment_meta.sizes.medium.url+'" /></a><br>' +
+			      	'<img src="data/images/'+value.media.url+'" /></a><br>' +
 			      	'<h3>'+value.title+'</h3>' +
 			      	'<p>'+value.excerpt+'</p></li>');
 			    });
@@ -40,11 +44,11 @@ var app = {
 	getSinglePost: function(postID) {
 		console.log('getSinglePost');
 
-		var rootURL = 'http://www.wp4.dev/wp-json';
+	
 
 		$.ajax({
 			type: 'GET',
-			url: rootURL + '/posts/' + postID,
+			url: rootURL + 'post.json',
 			dataType: 'json',
 			success: function(data){
 				console.log(data);
